@@ -6,5 +6,4 @@ Mechanica is a game, developed by the team Tikkitek in the circumstances of the 
 
 Requirement
 -----------
-Visual Studio 2010
-XNA Game Studio
+Visual Studio 2010 with XNA Game Studio
