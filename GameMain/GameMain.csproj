@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A6476349-96F4-49B5-ACBA-B0AC14723570}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TikiEngine</RootNamespace>
+    <AssemblyName>Mechanica</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>HiDef</XnaProfile>
+    <XnaCrossPlatformGroupID>13c337d7-5ede-46fc-b1a7-f0e9ec69ecfa</XnaCrossPlatformGroupID>
+    <XnaOutputType>Game</XnaOutputType>
+    <ApplicationIcon>Base\GameMain.ico</ApplicationIcon>
+    <Thumbnail>Base\GameThumbnail.png</Thumbnail>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>%24/ProjectTiki/GameMain</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://ion02.de:8080/tfs/defaultcollection</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <PublishUrl>..\..\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Binary\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>false</XnaCompressContent>
+    <NoWarn />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug - Kinect|x86'">
+    <OutputPath>..\..\Binary\</OutputPath>
+    <DefineConstants>WINDOWS KINECT</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug - Designer|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Binary\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS DESIGNER</DefineConstants>
+    <NoWarn>
+    </NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\..\Binary\GameMain.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4E9BE8FE50ADB83E87CFDB14578FF06B4F6FA0C7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>GameMain_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Video, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Config.cs" />
+    <Compile Include="Elements\CheckPoint.cs" />
+    <Compile Include="Elements\Cube.cs" />
+    <Compile Include="Elements\CubeStone.cs" />
+    <Compile Include="Elements\CubeTrigger.cs" />
+    <Compile Include="Elements\Robo.cs" />
+    <Compile Include="Elements\RoboAnimation.cs" />
+    <Compile Include="Elements\RoboBuild.cs" />
+    <Compile Include="Elements\RoboDestroy.cs" />
+    <Compile Include="Elements\RoboEffects.cs" />
+    <Compile Include="Elements\RoboPushingBlock.cs" />
+    <Compile Include="Elements\RoboSounds.cs" />
+    <Compile Include="Elements\SuspensionBridge.cs" />
+    <Compile Include="Elements\TutorialPoint.cs" />
+    <Compile Include="GameMain.cs" />
+    <Compile Include="Levels\Designer\COM\DesignAction.cs" />
+    <Compile Include="Levels\Designer\COM\DesignActionArgs.cs" />
+    <Compile Include="Levels\Designer\COM\DesignActionVar.cs" />
+    <Compile Include="Levels\Designer\COM\designSet.cs" />
+    <Compile Include="Levels\Designer\COM\designConstructorCall.cs" />
+    <Compile Include="Levels\Designer\COM\designDeclareField.cs" />
+    <Compile Include="Levels\Designer\COM\designMethodCall.cs" />
+    <Compile Include="Levels\Designer\COM\designProperty.cs" />
+    <Compile Include="Levels\Designer\COM\designStaticValue.cs" />
+    <Compile Include="Levels\Designer\GOM\geAttachedAnimation.cs" />
+    <Compile Include="Levels\Designer\GOM\geIslandMoving.cs" />
+    <Compile Include="Levels\Designer\GOM\geIslandTeeter.cs" />
+    <Compile Include="Levels\Designer\GOM\geIslandWiggle.cs" />
+    <Compile Include="Levels\Designer\LevelSave.cs" />
+    <Compile Include="Levels\Designer\ucDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Levels\Designer\ucDesign.Designer.cs">
+      <DependentUpon>ucDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Levels\Designer\formElements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Levels\Designer\formElements.Designer.cs">
+      <DependentUpon>formElements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Levels\Designer\formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Levels\Designer\formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Levels\Designer\formProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Levels\Designer\formProperties.Designer.cs">
+      <DependentUpon>formProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Levels\Designer\GOM\GameElement.cs" />
+    <Compile Include="Levels\Designer\GOM\GameElementAttached.cs" />
+    <Compile Include="Levels\Designer\GOM\GameElementIsland.cs" />
+    <Compile Include="Levels\Designer\GOM\geAttachedSprite.cs" />
+    <Compile Include="Levels\Designer\LevelDesigner.cs" />
+    <Compile Include="Levels\Designer\COM\designField.cs" />
+    <Compile Include="Levels\Designer\ucProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Levels\Designer\ucProperties.Designer.cs">
+      <DependentUpon>ucProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Levels\level2.cs" />
+    <Compile Include="Levels\level4.cs" />
+    <Compile Include="Levels\level1.cs" />
+    <Compile Include="Levels\LevelGame.cs" />
+    <Compile Include="Levels\level3.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="SetupBreakable.cs" />
+    <Compile Include="SetupGame.cs" />
+    <Compile Include="SetupElements.cs" />
+    <Compile Include="States\stateCredits.cs" />
+    <Compile Include="States\stateLevel.cs" />
+    <Compile Include="States\stateLoading.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\stateIntro.cs" />
+    <Compile Include="States\stateMenu.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\Program.cs" />
+    <Compile Include="States\stateOptionAudio.cs" />
+    <Compile Include="States\stateOptionControl.cs" />
+    <Compile Include="States\stateOptionGraphics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Base\GameMain.ico" />
+    <Content Include="Base\GameThumbnail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Components.csproj">
+      <Project>{1591010A-457B-4EC7-8C91-C07D7E501A0C}</Project>
+      <Name>Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FarseerPhysics\Farseer Physics XNA.csproj">
+      <Project>{0A850700-1ABB-4288-A391-6726B90EBEB9}</Project>
+      <Name>Farseer Physics XNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameMainContent\GameMainContent.contentproj">
+      <Name>Shi-Shin-ToGameContent %28Content%29</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{245131D0-D09E-441E-B806-01A050F2CF6A}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Xna.Framework.4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\island8_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandD1a_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandD1b_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandD1c_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandO1_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandO2a_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TikiEngine.Elements.Physic.PhysicBodyBreakable\islandO2b_p.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Levels\Designer\formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Levels\Designer\ucDesign.resx">
+      <DependentUpon>ucDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Levels\Designer\formElements.resx">
+      <DependentUpon>formElements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Levels\Designer\formProperties.resx">
+      <DependentUpon>formProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Levels\Designer\ucProperties.resx">
+      <DependentUpon>ucProperties.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>

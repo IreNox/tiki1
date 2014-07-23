@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1591010A-457B-4EC7-8C91-C07D7E501A0C}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TikiEngine</RootNamespace>
+    <AssemblyName>Components</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>HiDef</XnaProfile>
+    <XnaCrossPlatformGroupID>f47a5d04-e5f5-45f9-a391-4312098a4751</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Binary\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>false</XnaCompressContent>
+    <NoWarn />
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>true</XnaCompressContent>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug - Kinect|x86'">
+    <OutputPath>..\..\Binary\</OutputPath>
+    <DefineConstants>KINECT</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Video, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BasicBatch.cs" />
+    <Compile Include="Base\NonSerializedTikiAttribute.cs" />
+    <Compile Include="Base\ParticleBatch.cs" />
+    <Compile Include="Base\PolygonBatch.cs" />
+    <Compile Include="Base\PostProcessingBatch.cs" />
+    <Compile Include="Base\Serialization.cs" />
+    <Compile Include="Components\MouseComponent.cs" />
+    <Compile Include="Components\MultiVoice.cs" />
+    <Compile Include="Components\SoundComponent.cs" />
+    <Compile Include="Elements\Audio\SoundProfil.cs" />
+    <Compile Include="Elements\Controls\RadioButton.cs" />
+    <Compile Include="Elements\Controls\ScrollBar.cs" />
+    <Compile Include="Elements\Events\DoWhatIWantEvent.cs" />
+    <Compile Include="Elements\Events\VoiceGameEvent.cs" />
+    <Compile Include="Elements\Particle\Effects\effectRunCloud.cs" />
+    <Compile Include="Elements\Particle\Effects\effectRunSparkOrange.cs" />
+    <Compile Include="Elements\Particle\Effects\effectRunSparkRed.cs" />
+    <Compile Include="Elements\Particle\Systems\systemRunDust.cs" />
+    <Compile Include="Elements\Particle\Systems\systemRunSpark.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorCoundownAction.cs" />
+    <Compile Include="Elements\Physic\Material.cs" />
+    <Compile Include="Elements\Physic\Riddle2.cs" />
+    <Compile Include="Elements\Particle\Effects\effectBreakCube.cs" />
+    <Compile Include="Elements\Particle\Effects\effectBreakRedDot.cs" />
+    <Compile Include="Elements\Particle\Effects\effectBuildBackground.cs" />
+    <Compile Include="Elements\Particle\Effects\effectBuildCube.cs" />
+    <Compile Include="Elements\Particle\Systems\systemBuild.cs" />
+    <Compile Include="Elements\Particle\Systems\systemBuildBreak.cs" />
+    <Compile Include="Elements\Physic\Riddle2ext.cs" />
+    <Compile Include="Elements\Physic\Riddle3.cs" />
+    <Compile Include="Elements\Physic\Riddle4.cs" />
+    <Compile Include="Elements\Graphics\VideoPlayback.cs" />
+    <Compile Include="Elements\Trigger\FickDichTrigger.cs" />
+    <Compile Include="Objects\TikiConfig.cs" />
+    <Compile Include="Objects\RotatedRectangle.cs" />
+    <Compile Include="Elements\Effects\shaderBasic.cs" />
+    <Compile Include="Elements\Effects\shaderBlurAverage.cs" />
+    <Compile Include="Elements\Effects\shaderBlurDiagonal.cs" />
+    <Compile Include="Elements\Events\CameraEvent.cs" />
+    <Compile Include="Elements\Effects\shaderGlow.cs" />
+    <Compile Include="Elements\Events\GameEvent.cs" />
+    <Compile Include="Elements\Particle\Effects\effectBeam.cs" />
+    <Compile Include="Elements\Particle\Effects\effectCenterPoint.cs" />
+    <Compile Include="Elements\Particle\Effects\effectAbsorb.cs" />
+    <Compile Include="Elements\Particle\Effects\effectCloud.cs" />
+    <Compile Include="Elements\Particle\Effects\effectLighting.cs" />
+    <Compile Include="Elements\Particle\Effects\effectMask.cs" />
+    <Compile Include="Elements\Particle\Effects\effectMoveUp.cs" />
+    <Compile Include="Elements\Particle\Effects\effectParticle.cs" />
+    <Compile Include="Elements\Particle\Effects\effectStar.cs" />
+    <Compile Include="Elements\Particle\Effects\effectTail.cs" />
+    <Compile Include="Elements\Particle\Effects\effectTail2.cs" />
+    <Compile Include="Elements\Particle\Modifier\modifierInterpolator.cs" />
+    <Compile Include="Elements\Particle\Particle.cs" />
+    <Compile Include="Elements\Particle\ParticleSystem.cs" />
+    <Compile Include="Elements\Particle\Systems\systemDestroy.cs" />
+    <Compile Include="Elements\Particle\Systems\systemDust.cs" />
+    <Compile Include="Elements\Particle\Systems\systemDestroyDust.cs" />
+    <Compile Include="Elements\Particle\Systems\systemHolo.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorAngularImpulse.cs" />
+    <Compile Include="Elements\Physic\Riddle1.cs" />
+    <Compile Include="Elements\SaveGame.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorCountdownBreak.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorFixedDistance.cs" />
+    <Compile Include="Elements\Level.cs" />
+    <Compile Include="Elements\Graphics\AttachedElement.cs" />
+    <Compile Include="Elements\Graphics\Circle.cs" />
+    <Compile Include="Elements\Graphics\NameObjectGraphics.cs" />
+    <Compile Include="Elements\Graphics\ParallaxSprite.cs" />
+    <Compile Include="Elements\Graphics\Sprite.cs" />
+    <Compile Include="Elements\Graphics\SpriteRepeate.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorAttach.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorCenterOfMass.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorDebug.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorCollectable.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorFixedCentre.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorMoving.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorSink.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorTeeter.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorTracking.cs" />
+    <Compile Include="Elements\Physic\NewtonIsland.cs" />
+    <Compile Include="Elements\Physic\PhysicBodyBreakable.cs" />
+    <Compile Include="Elements\Physic\PhysicCircle.cs" />
+    <Compile Include="Elements\Trigger\FreeTrigger.cs" />
+    <Compile Include="Elements\Trigger\CharakterTrigger.cs" />
+    <Compile Include="Elements\Trigger\CollisionTrigger.cs" />
+    <Compile Include="Elements\Trigger\GameTrigger.cs" />
+    <Compile Include="Functions.cs" />
+    <Compile Include="Objects\IAttachable.cs" />
+    <Compile Include="Objects\IAttachableCreator.cs" />
+    <Compile Include="Objects\LayerDepthEnum.cs" />
+    <Compile Include="Base\DataManager.cs" />
+    <Compile Include="Components\CameraComponent.cs" />
+    <Compile Include="Components\ControlCompontent.cs" />
+    <Compile Include="Elements\Test\DebugView.cs" />
+    <Compile Include="Objects\MouseEventArgs.cs" />
+    <Compile Include="Elements\Controls\Button.cs" />
+    <Compile Include="Elements\Controls\CheckBox.cs" />
+    <Compile Include="Elements\Controls\DropdownBox.cs" />
+    <Compile Include="Elements\Controls\Label.cs" />
+    <Compile Include="Elements\Controls\PictureBox.cs" />
+    <Compile Include="Objects\ConvertUnits.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GameInstances.cs" />
+    <Compile Include="Elements\NameObject.cs" />
+    <Compile Include="Elements\Graphics\Grid.cs" />
+    <Compile Include="Elements\Physic\Behavior\Behavior.cs" />
+    <Compile Include="Elements\Physic\Behavior\behaviorWiggle.cs" />
+    <Compile Include="Elements\Physic\NameObjectPhysicPolygon.cs" />
+    <Compile Include="Elements\Physic\PhysicTexturePolygon.cs" />
+    <Compile Include="Elements\Physic\NameObjectPhysic.cs" />
+    <Compile Include="Elements\Graphics\NameObjectTextured.cs" />
+    <Compile Include="Elements\Particle\ParticleEffect.cs" />
+    <Compile Include="Elements\Physic\PhysicBox.cs" />
+    <Compile Include="Elements\Physic\PhysicTextureBreakable.cs" />
+    <Compile Include="Elements\Physic\PhysicPath.cs" />
+    <Compile Include="Elements\Physic\PhysicTexture.cs" />
+    <Compile Include="Elements\Graphics\Animation.cs" />
+    <Compile Include="Elements\Graphics\Parallax.cs" />
+    <Compile Include="Elements\Effects\ShaderEffect.cs" />
+    <Compile Include="Objects\MouseButtons.cs" />
+    <Compile Include="Objects\SoundEnums.cs" />
+    <Compile Include="Objects\SpriteBatchType.cs" />
+    <Compile Include="Objects\VerticesContainer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FarseerPhysics\Farseer Physics XNA.csproj">
+      <Project>{0A850700-1ABB-4288-A391-6726B90EBEB9}</Project>
+      <Name>Farseer Physics XNA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>
