@@ -21,7 +21,10 @@ namespace TikiEngine.Elements
         {
             _gameVars = new Dictionary<string, object>();
             _gameVars.AddRange(GI.GameVars.Select(kvp => new KeyValuePair<string, object>(kvp.Key, kvp.Value)).ToArray());
-            _breakables = GI.Level.ElementsDestroyIsland.OfType<PhysicTextureBreakable>().Where(b => !b.Broken).ToArray();
+			if (GI.Level != null)
+			{
+				_breakables = GI.Level.ElementsDestroyIsland.OfType<PhysicTextureBreakable>().Where(b => !b.Broken).ToArray();
+			}
         }
         #endregion
 

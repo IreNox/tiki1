@@ -45,7 +45,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Binary\</OutputPath>
+    <OutputPath>..\Binary\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -58,7 +58,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Release\</OutputPath>
+    <OutputPath>..\Binary\Release\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,30 +66,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug - Kinect|x86'">
-    <OutputPath>..\..\Binary\</OutputPath>
-    <DefineConstants>WINDOWS KINECT</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug - Designer|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\Binary\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WINDOWS DESIGNER</DefineConstants>
-    <NoWarn>
-    </NoWarn>
-    <NoStdLib>true</NoStdLib>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisLogFile>..\..\Binary\GameMain.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>4E9BE8FE50ADB83E87CFDB14578FF06B4F6FA0C7</ManifestCertificateThumbprint>
@@ -166,27 +142,19 @@
     <Compile Include="Levels\Designer\GOM\geIslandTeeter.cs" />
     <Compile Include="Levels\Designer\GOM\geIslandWiggle.cs" />
     <Compile Include="Levels\Designer\LevelSave.cs" />
-    <Compile Include="Levels\Designer\ucDesign.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Levels\Designer\ucDesign.cs" />
     <Compile Include="Levels\Designer\ucDesign.Designer.cs">
       <DependentUpon>ucDesign.cs</DependentUpon>
     </Compile>
-    <Compile Include="Levels\Designer\formElements.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Levels\Designer\formElements.cs" />
     <Compile Include="Levels\Designer\formElements.Designer.cs">
       <DependentUpon>formElements.cs</DependentUpon>
     </Compile>
-    <Compile Include="Levels\Designer\formMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Levels\Designer\formMain.cs" />
     <Compile Include="Levels\Designer\formMain.Designer.cs">
       <DependentUpon>formMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Levels\Designer\formProperties.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Levels\Designer\formProperties.cs" />
     <Compile Include="Levels\Designer\formProperties.Designer.cs">
       <DependentUpon>formProperties.cs</DependentUpon>
     </Compile>
@@ -196,9 +164,7 @@
     <Compile Include="Levels\Designer\GOM\geAttachedSprite.cs" />
     <Compile Include="Levels\Designer\LevelDesigner.cs" />
     <Compile Include="Levels\Designer\COM\designField.cs" />
-    <Compile Include="Levels\Designer\ucProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Levels\Designer\ucProperties.cs" />
     <Compile Include="Levels\Designer\ucProperties.Designer.cs">
       <DependentUpon>ucProperties.cs</DependentUpon>
     </Compile>

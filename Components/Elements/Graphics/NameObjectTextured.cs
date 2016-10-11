@@ -58,7 +58,13 @@ namespace TikiEngine.Elements.Graphics
 
                 if (_textureFile != null)
                 {
-                    this.Texture = GI.Content.Load<Texture2D>(value);
+					try
+					{
+						this.Texture = GI.Content.Load<Texture2D>(value);
+					}
+					catch
+					{
+					}
                 }
             }
         }
