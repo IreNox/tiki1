@@ -36,10 +36,10 @@
 			this.textDestination = new System.Windows.Forms.TextBox();
 			this.buttonBrowseDestination = new System.Windows.Forms.Button();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-			this.directorySearcher = new System.DirectoryServices.DirectorySearcher();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pictureBox = new System.Windows.Forms.PictureBox();
+			this.buttonConvert = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -71,12 +71,14 @@
 			// 
 			// listFiles
 			// 
-			this.listFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listFiles.FormattingEnabled = true;
 			this.listFiles.IntegralHeight = false;
 			this.listFiles.Location = new System.Drawing.Point(0, 0);
 			this.listFiles.Name = "listFiles";
-			this.listFiles.Size = new System.Drawing.Size(224, 380);
+			this.listFiles.Size = new System.Drawing.Size(224, 351);
 			this.listFiles.TabIndex = 2;
 			this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
 			// 
@@ -124,12 +126,6 @@
 			this.openFileDialog.RestoreDirectory = true;
 			this.openFileDialog.SupportMultiDottedExtensions = true;
 			// 
-			// directorySearcher
-			// 
-			this.directorySearcher.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-			this.directorySearcher.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-			this.directorySearcher.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
-			// 
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -157,6 +153,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.buttonConvert);
 			this.splitContainer1.Panel1.Controls.Add(this.listFiles);
 			// 
 			// splitContainer1.Panel2
@@ -175,6 +172,17 @@
 			this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox.TabIndex = 0;
 			this.pictureBox.TabStop = false;
+			// 
+			// buttonConvert
+			// 
+			this.buttonConvert.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.buttonConvert.Location = new System.Drawing.Point(0, 357);
+			this.buttonConvert.Name = "buttonConvert";
+			this.buttonConvert.Size = new System.Drawing.Size(224, 23);
+			this.buttonConvert.TabIndex = 3;
+			this.buttonConvert.Text = "Convert all";
+			this.buttonConvert.UseVisualStyleBackColor = true;
+			this.buttonConvert.Click += new System.EventHandler(this.buttonConvert_Click);
 			// 
 			// FormMain
 			// 
@@ -206,10 +214,10 @@
 		private System.Windows.Forms.TextBox textDestination;
 		private System.Windows.Forms.Button buttonBrowseDestination;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
-		private System.DirectoryServices.DirectorySearcher directorySearcher;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.PictureBox pictureBox;
+		private System.Windows.Forms.Button buttonConvert;
 	}
 }
 
