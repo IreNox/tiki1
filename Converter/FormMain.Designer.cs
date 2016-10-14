@@ -38,8 +38,8 @@
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.pictureBox = new System.Windows.Forms.PictureBox();
 			this.buttonConvert = new System.Windows.Forms.Button();
+			this.pictureBox = new System.Windows.Forms.PictureBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -108,7 +108,7 @@
 			this.textDestination.Name = "textDestination";
 			this.textDestination.Size = new System.Drawing.Size(512, 20);
 			this.textDestination.TabIndex = 5;
-			this.textDestination.Text = "E:\\Development\\tiki3\\content\\genericdata\\entities";
+			this.textDestination.Text = "E:\\Development\\tiki3\\content";
 			// 
 			// buttonBrowseDestination
 			// 
@@ -163,16 +163,6 @@
 			this.splitContainer1.SplitterDistance = 224;
 			this.splitContainer1.TabIndex = 8;
 			// 
-			// pictureBox
-			// 
-			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox.Location = new System.Drawing.Point(0, 0);
-			this.pictureBox.Name = "pictureBox";
-			this.pictureBox.Size = new System.Drawing.Size(446, 380);
-			this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox.TabIndex = 0;
-			this.pictureBox.TabStop = false;
-			// 
 			// buttonConvert
 			// 
 			this.buttonConvert.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -183,6 +173,16 @@
 			this.buttonConvert.Text = "Convert all";
 			this.buttonConvert.UseVisualStyleBackColor = true;
 			this.buttonConvert.Click += new System.EventHandler(this.buttonConvert_Click);
+			// 
+			// pictureBox
+			// 
+			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox.Location = new System.Drawing.Point(0, 0);
+			this.pictureBox.Name = "pictureBox";
+			this.pictureBox.Size = new System.Drawing.Size(446, 380);
+			this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox.TabIndex = 0;
+			this.pictureBox.TabStop = false;
 			// 
 			// FormMain
 			// 
