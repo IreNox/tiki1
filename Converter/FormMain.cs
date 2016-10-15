@@ -168,7 +168,7 @@ namespace Converter
 
 			XElement transformObject = new XElement("object", new XAttribute("type", "Transform2dComponentInitData"));
 			XElement transformPointer = new XElement("pointer", new XAttribute("type", "ComponentInitData"), transformObject);
-			XElement transformTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "type"), new XAttribute("value", "{enum Components2dType.Transform}"));
+			XElement transformTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Transform}"));
 			XElement transformInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), transformPointer);
 			XElement transformComponent = new XElement("object", new XAttribute("type", "EntityComponent"), transformTypeField, transformInitDataField);
 			XElement transformElement = new XElement("element", new XAttribute("type", "EntityComponent"), transformComponent);
@@ -176,7 +176,7 @@ namespace Converter
 			XElement textureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
 			XElement textureObject = new XElement("object", new XAttribute("type", "TextureComponentInitData"), textureField);
 			XElement texturePointer = new XElement("pointer", new XAttribute("type", "ComponentInitData"), textureObject);
-			XElement textureTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "type"), new XAttribute("value", "{enum Components2dType.Texture}"));
+			XElement textureTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Texture}"));
 			XElement textureInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), texturePointer);
 			XElement textureComponent = new XElement("object", new XAttribute("type", "EntityComponent"), textureTypeField, textureInitDataField);
 			XElement textureElement = new XElement("element", new XAttribute("type", "EntityComponent"), textureComponent);
@@ -202,7 +202,7 @@ namespace Converter
 
 			XElement bodyObject = new XElement("object", new XAttribute("type", "Physics2dBodyComponentInitData"), bodyDensityField, bodyFrictionField, bodyFreeRoationField, bodyShapeField);
 			XElement bodyPointer = new XElement("pointer", new XAttribute("type", "ComponentInitData"), bodyObject);
-			XElement bodyTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "type"), new XAttribute("value", "{enum Physics2dComponentTypes.Body}"));
+			XElement bodyTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Physics2dComponentTypes.Body}"));
 			XElement bodyInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), bodyPointer);
 			XElement bodyComponent = new XElement("object", new XAttribute("type", "EntityComponent"), bodyTypeField, bodyInitDataField);
 			XElement bodyElement = new XElement("element", new XAttribute("type", "EntityComponent"), bodyComponent);
