@@ -141,7 +141,7 @@ namespace Converter
 			textureVertices.Translate(ref centroid);
 
 			int i = 1;
-			while (textureVertices.Count > 100)
+			while (textureVertices.Count > 8)
 			{
 				if (i == 1)
 				{
