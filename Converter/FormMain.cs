@@ -166,14 +166,27 @@ namespace Converter
 		{
 			FarseerPhysics.Common.Vertices collisionVertices = calculateVerticesFromCollision(collisionFilename);
 
+			Vector2 textureOffset = Vector2.Zero;
+			foreach( Vector2 vec in collisionVertices)
+			{
+				textureOffset += vec;
+			}
+			textureOffset /= collisionVertices.Count;
+
 			XElement transformObject = new XElement("object", new XAttribute("type", "Transform2dComponentInitData"));
 			XElement transformTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Transform}"));
 			XElement transformInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), transformObject);
 			XElement transformComponent = new XElement("object", new XAttribute("type", "EntityComponent"), transformTypeField, transformInitDataField);
 			XElement transformElement = new XElement("element", new XAttribute("type", "EntityComponent"), transformComponent);
 
-			XElement textureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
-			XElement textureObject = new XElement("object", new XAttribute("type", "TextureComponentInitData"), textureField);
+			XElement textureOffsetXField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "x"), new XAttribute("value", textureOffset.X.ToString().Replace(',', '.')));
+			XElement textureOffsetYField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "y"), new XAttribute("value", textureOffset.Y.ToString().Replace(',', '.')));
+			XElement textureOffsetObject = new XElement("object", new XAttribute("type", "float2"), textureOffsetXField, textureOffsetYField);
+
+			XElement textureTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
+			XElement textureOffsetField = new XElement("field", new XAttribute("type", "float2"), new XAttribute("name", "offset"), textureOffsetObject);
+			XElement textureLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "5"));
+			XElement textureObject = new XElement("object", new XAttribute("type", "TextureComponentInitData"), textureTextureField, textureOffsetField, textureLayerField);
 			XElement textureTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Texture}"));
 			XElement textureInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), textureObject);
 			XElement textureComponent = new XElement("object", new XAttribute("type", "EntityComponent"), textureTypeField, textureInitDataField);
