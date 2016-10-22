@@ -204,7 +204,13 @@ namespace Converter
 			XElement bodyComponent = new XElement("object", new XAttribute("type", "EntityComponent"), bodyTypeField, bodyInitDataField);
 			XElement bodyElement = new XElement("element", new XAttribute("type", "EntityComponent"), bodyComponent);
 
-			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, textureElement, bodyElement);
+			XElement wiggleObject = new XElement("object", new XAttribute("type", "WiggleComponentInitData"));
+			XElement wiggleTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum MechanicaComponentType.Wiggle}"));
+			XElement wiggleInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), wiggleObject);
+			XElement wiggleComponent = new XElement("object", new XAttribute("type", "EntityComponent"), wiggleTypeField, wiggleInitDataField);
+			XElement wiggleElement = new XElement("element", new XAttribute("type", "EntityComponent"), wiggleComponent);
+
+			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, textureElement, bodyElement, wiggleElement);
 			XElement componentsField = new XElement("field", new XAttribute("type", "{array EntityComponent}"), new XAttribute("name", "components"), componentsArray);
 			XElement templateObject = new XElement("object", new XAttribute("type", "EntityTemplateData"), componentsField);
 			XElement resource = new XElement("resource", new XAttribute("type", "EntityTemplate"), templateObject);
@@ -233,7 +239,7 @@ namespace Converter
 			PsdFile psdFile = new PsdFile();
 			psdFile.RowCount = colorImage.Height;
 			psdFile.ColumnCount = colorImage.Width;
-			psdFile.ChannelCount = 4;
+			psdFile.ChannelCount = 3;
 			psdFile.ColorMode = PsdColorMode.RGB;
 			psdFile.BitDepth = 8;
 			psdFile.Resolution = resInfo;
@@ -260,7 +266,7 @@ namespace Converter
 					channels[0].ImageData[destIndex] = color.R;
 					channels[1].ImageData[destIndex] = color.G;
 					channels[2].ImageData[destIndex] = color.B;
-					channels[3].ImageData[destIndex] = color.A;
+					//channels[3].ImageData[destIndex] = color.A;
 				}
 			}
 
