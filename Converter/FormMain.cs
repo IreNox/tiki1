@@ -145,7 +145,7 @@ namespace Converter
 			textureOffset = -centroid;
 			textureOffset.X -= width / 2.0f;
 			textureOffset.Y -= height / 2.0f;
-			textureOffset /= -200.0f;
+			textureOffset /= 100.0f;
 
 			int i = 1;
 			while (textureVertices.Count > 8)
