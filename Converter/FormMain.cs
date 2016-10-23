@@ -116,9 +116,10 @@ namespace Converter
 			listFiles.DisplayMember = "Name";
 		}
 
-		private unsafe FarseerPhysics.Common.Vertices calculateVerticesFromCollision(string collisionFilename)
+		private unsafe FarseerPhysics.Common.Vertices calculateVerticesFromCollision(string collisionFilename, out Vector2 textureOffset)
 		{
 			int width = 0;
+			int height = 0;
 			uint[] imageData = null;
 			{
 				Bitmap collisionImage = (Bitmap)Bitmap.FromFile(collisionFilename);
@@ -126,6 +127,7 @@ namespace Converter
 				uint* pCollisionRawData = (uint*)collisionData.Scan0.ToPointer();
 
 				width = collisionImage.Width;
+				height = collisionImage.Height;
 				imageData = new uint[collisionImage.Width * collisionImage.Height];
 				for (int j = 0; j < imageData.Length; j++)
 				{
@@ -139,6 +141,11 @@ namespace Converter
 
 			Vector2 centroid = -textureVertices.GetCentroid();
 			textureVertices.Translate(ref centroid);
+
+			textureOffset = -centroid;
+			textureOffset.X -= width / 2.0f;
+			textureOffset.Y -= height / 2.0f;
+			textureOffset /= -200.0f;
 
 			int i = 1;
 			while (textureVertices.Count > 8)
@@ -164,14 +171,8 @@ namespace Converter
 
 		private void writeGenericData(string genericFilename, string xassetFilename, string collisionFilename, string textureFilename)
 		{
-			FarseerPhysics.Common.Vertices collisionVertices = calculateVerticesFromCollision(collisionFilename);
-
-			Vector2 textureOffset = Vector2.Zero;
-			foreach( Vector2 vec in collisionVertices)
-			{
-				textureOffset += vec;
-			}
-			textureOffset /= collisionVertices.Count;
+			Vector2 textureOffset;
+			FarseerPhysics.Common.Vertices collisionVertices = calculateVerticesFromCollision(collisionFilename, out textureOffset);
 
 			XElement transformObject = new XElement("object", new XAttribute("type", "Transform2dComponentInitData"));
 			XElement transformTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Transform}"));
@@ -293,7 +294,7 @@ namespace Converter
 
 		private void convertFile(IslandFile file)
 		{
-			writeTexture(file.ColorFileName, file.TexturePsdFileName, file.TextureXassetFileName);
+			//writeTexture(file.ColorFileName, file.TexturePsdFileName, file.TextureXassetFileName);
 			writeGenericData(file.GenericDataFileName, file.GenericDataXassetFileName, file.CollisionFileName, file.TextureFileName);
 		}
 	}
