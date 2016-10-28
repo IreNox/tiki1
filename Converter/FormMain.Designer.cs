@@ -108,7 +108,7 @@
 			this.textDestination.Name = "textDestination";
 			this.textDestination.Size = new System.Drawing.Size(512, 20);
 			this.textDestination.TabIndex = 5;
-			this.textDestination.Text = "E:\\Development\\tiki3\\content";
+			this.textDestination.Text = "E:\\Development\\mechanica\\content\\mechanica";
 			// 
 			// buttonBrowseDestination
 			// 

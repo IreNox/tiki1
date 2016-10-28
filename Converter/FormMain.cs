@@ -23,7 +23,7 @@ namespace Converter
 			public string GenericDataFileName { get; set; }
 			public string GenericDataXassetFileName { get; set; }
 			public string TextureFileName { get; set; }
-			public string TexturePsdFileName { get; set; }
+			public string TextureInputFileName { get; set; }
 			public string TextureXassetFileName { get; set; }
 		}
 
@@ -95,7 +95,7 @@ namespace Converter
 					islandFile.TextureFileName = islandFile.Name + ".texture";
 					islandFile.GenericDataFileName = Path.Combine(textDestination.Text, "genericdata\\entities", islandFile.Name + ".tikigenericobjects");
 					islandFile.GenericDataXassetFileName = Path.Combine(textDestination.Text, "genericdata\\entities", islandFile.Name + ".entity.xasset");
-					islandFile.TexturePsdFileName = Path.Combine(textDestination.Text, "textures\\islands", islandFile.Name + ".psd");
+					islandFile.TextureInputFileName = Path.Combine(textDestination.Text, "textures\\islands", islandFile.Name + ".png");
 					islandFile.TextureXassetFileName = Path.Combine(textDestination.Text, "textures\\islands", islandFile.Name + ".texture.xasset");
 				}
 
@@ -238,55 +238,56 @@ namespace Converter
 			File.WriteAllText(xassetFilename, xassetDoc.ToString());
 		}
 
-		private void writeTexture(string sourceFilename, string psdFilename, string xassetFilename)
+		private void writeTexture(string sourceFilename, string inputFilename, string xassetFilename)
 		{
 			Bitmap colorImage = (Bitmap)Image.FromFile(sourceFilename);
 
-			ResolutionInfo resInfo = new ResolutionInfo();
-			resInfo.WidthDisplayUnit = ResolutionInfo.Unit.Inches;
-			resInfo.HeightDisplayUnit = ResolutionInfo.Unit.Inches;
-			resInfo.HResDisplayUnit = ResolutionInfo.ResUnit.PxPerInch;
-			resInfo.VResDisplayUnit = ResolutionInfo.ResUnit.PxPerInch;
-			resInfo.HDpi = new UFixed16_16(72.0);
-			resInfo.VDpi = new UFixed16_16(72.0);
+			//ResolutionInfo resInfo = new ResolutionInfo();
+			//resInfo.WidthDisplayUnit = ResolutionInfo.Unit.Inches;
+			//resInfo.HeightDisplayUnit = ResolutionInfo.Unit.Inches;
+			//resInfo.HResDisplayUnit = ResolutionInfo.ResUnit.PxPerInch;
+			//resInfo.VResDisplayUnit = ResolutionInfo.ResUnit.PxPerInch;
+			//resInfo.HDpi = new UFixed16_16(72.0);
+			//resInfo.VDpi = new UFixed16_16(72.0);
 
-			PsdFile psdFile = new PsdFile();
-			psdFile.RowCount = colorImage.Height;
-			psdFile.ColumnCount = colorImage.Width;
-			psdFile.ChannelCount = 3;
-			psdFile.ColorMode = PsdColorMode.RGB;
-			psdFile.BitDepth = 8;
-			psdFile.Resolution = resInfo;
-			psdFile.ImageCompression = ImageCompression.Rle;
+			//PsdFile psdFile = new PsdFile();
+			//psdFile.RowCount = colorImage.Height;
+			//psdFile.ColumnCount = colorImage.Width;
+			//psdFile.ChannelCount = 3;
+			//psdFile.ColorMode = PsdColorMode.RGB;
+			//psdFile.BitDepth = 8;
+			//psdFile.Resolution = resInfo;
+			//psdFile.ImageCompression = ImageCompression.Rle;
 
-			int imageSize = psdFile.RowCount * psdFile.ColumnCount;
-			for (short i = 0; i < psdFile.ChannelCount; i++)
-			{
-				Channel channel = new Channel(i, psdFile.BaseLayer);
-				channel.ImageData = new byte[imageSize];
-				channel.ImageCompression = psdFile.ImageCompression;
-				psdFile.BaseLayer.Channels.Add(channel);
-			}
+			//int imageSize = psdFile.RowCount * psdFile.ColumnCount;
+			//for (short i = 0; i < psdFile.ChannelCount; i++)
+			//{
+			//	Channel channel = new Channel(i, psdFile.BaseLayer);
+			//	channel.ImageData = new byte[imageSize];
+			//	channel.ImageCompression = psdFile.ImageCompression;
+			//	psdFile.BaseLayer.Channels.Add(channel);
+			//}
 
-			Channel[] channels = psdFile.BaseLayer.Channels.ToIdArray();
-			for (int y = 0; y < colorImage.Height; y++)
-			{
-				int destRowIndex = y * colorImage.Width;
-				for (int x = 0; x < colorImage.Width; x++)
-				{
-					int destIndex = destRowIndex + x;
+			//Channel[] channels = psdFile.BaseLayer.Channels.ToIdArray();
+			//for (int y = 0; y < colorImage.Height; y++)
+			//{
+			//	int destRowIndex = y * colorImage.Width;
+			//	for (int x = 0; x < colorImage.Width; x++)
+			//	{
+			//		int destIndex = destRowIndex + x;
 
-					System.Drawing.Color color = colorImage.GetPixel(x, y);
-					channels[0].ImageData[destIndex] = color.R;
-					channels[1].ImageData[destIndex] = color.G;
-					channels[2].ImageData[destIndex] = color.B;
-					//channels[3].ImageData[destIndex] = color.A;
-				}
-			}
+			//		System.Drawing.Color color = colorImage.GetPixel(x, y);
+			//		channels[0].ImageData[destIndex] = color.R;
+			//		channels[1].ImageData[destIndex] = color.G;
+			//		channels[2].ImageData[destIndex] = color.B;
+			//		//channels[3].ImageData[destIndex] = color.A;
+			//	}
+			//}
 
-			psdFile.Save(psdFilename, Encoding.Default);
+			//psdFile.Save(inputFilename, Encoding.Default);
+			colorImage.Save(inputFilename, ImageFormat.Png);
 
-			XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(psdFilename)), new XAttribute("type", "texture"));
+			XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(inputFilename)), new XAttribute("type", "texture"));
 			XElement root = new XElement("tikiasset", input);
 			XDocument doc = new XDocument(root);
 			File.WriteAllText(xassetFilename, doc.ToString());
@@ -294,7 +295,7 @@ namespace Converter
 
 		private void convertFile(IslandFile file)
 		{
-			//writeTexture(file.ColorFileName, file.TexturePsdFileName, file.TextureXassetFileName);
+			writeTexture(file.ColorFileName, file.TextureInputFileName, file.TextureXassetFileName);
 			writeGenericData(file.GenericDataFileName, file.GenericDataXassetFileName, file.CollisionFileName, file.TextureFileName);
 		}
 	}
