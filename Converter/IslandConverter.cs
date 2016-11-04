@@ -54,8 +54,8 @@ namespace Converter
 
 					islandFile.Name = name;
 					islandFile.TextureFileName = islandFile.Name + ".texture";
-					islandFile.GenericDataFileName = Path.Combine(m_destination, "genericdata\\entities", islandFile.Name + ".tikigenericobjects");
-					islandFile.GenericDataXassetFileName = Path.Combine(m_destination, "genericdata\\entities", islandFile.Name + ".entity.xasset");
+					islandFile.GenericDataFileName = Path.Combine(m_destination, "genericdata\\entities\\islands", islandFile.Name + ".tikigenericobjects");
+					islandFile.GenericDataXassetFileName = Path.Combine(m_destination, "genericdata\\entities\\islands", islandFile.Name + ".entity.xasset");
 					islandFile.TextureInputFileName = Path.Combine(m_destination, "textures\\islands", islandFile.Name + ".png");
 					islandFile.TextureXassetFileName = Path.Combine(m_destination, "textures\\islands", islandFile.Name + ".texture.xasset");
 				}

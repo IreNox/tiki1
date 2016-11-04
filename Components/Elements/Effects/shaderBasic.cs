@@ -8,7 +8,7 @@ namespace TikiEngine.Elements.Effects
     {
         #region Init
         public shaderBasic()
-            : base(new BasicEffect(GI.Device))
+            : base(GI.Device == null ? null : new BasicEffect(GI.Device))
         {
             this.SetTexture(null);
         }
@@ -19,15 +19,18 @@ namespace TikiEngine.Elements.Effects
         {
             base.SetTexture(texture);
 
-            BasicEffect effect = (BasicEffect)this.EffectXna;
+			if (this.EffectXna != null)
+			{
+				BasicEffect effect = (BasicEffect)this.EffectXna;
 
-            effect.TextureEnabled = (texture != null);
-            effect.VertexColorEnabled = !effect.TextureEnabled;
+				effect.TextureEnabled = (texture != null);
+				effect.VertexColorEnabled = !effect.TextureEnabled;
 
-            if (effect.TextureEnabled)
-            {
-                effect.Texture = texture;
-            }            
+				if (effect.TextureEnabled)
+				{
+					effect.Texture = texture;
+				}
+			}           
         }
         #endregion
     }

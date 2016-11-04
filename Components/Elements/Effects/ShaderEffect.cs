@@ -48,6 +48,11 @@ namespace TikiEngine.Elements.Effects
 
         public void UpdateMatrices()
         {
+			if(this.EffectXna == null)
+			{
+				return;
+			}
+
             if (this.EffectXna is BasicEffect)
             {
                 BasicEffect effect = (BasicEffect)this.EffectXna;
@@ -89,7 +94,7 @@ namespace TikiEngine.Elements.Effects
         {
             base.SetTexture(texture);
 
-            if (this.EffectXna.Parameters["Texture"] != null)
+            if (this.EffectXna != null && this.EffectXna.Parameters["Texture"] != null)
             {
                 this.EffectXna.Parameters["Texture"].SetValue(texture);
 

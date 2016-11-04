@@ -21,6 +21,8 @@ namespace Converter
 		public FormMain()
 		{
 			InitializeComponent();
+
+			tabControl_Selected(tabControl, new TabControlEventArgs(tabControl.SelectedTab, tabControl.SelectedIndex, TabControlAction.Selected));
 		}
 
 		private void tabControl_Selected(object sender, TabControlEventArgs e)
@@ -102,8 +104,8 @@ namespace Converter
 
 		private void rescanBreakableFiles()
 		{
-			m_breakableConverter.Source = textIslandSource.Text;
-			m_breakableConverter.Destination = textIslandDestination.Text;
+			m_breakableConverter.Source = textBreakableSource.Text;
+			m_breakableConverter.Destination = textBreakableDestination.Text;
 
 			m_breakableConverter.RescanFiles();
 
