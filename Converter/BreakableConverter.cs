@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TikiEngine;
+using TikiEngine.Elements.Physic;
 
 namespace Converter
 {
@@ -11,9 +13,6 @@ namespace Converter
 		public string CollisionFileName { get; set; }
 		public string GenericDataFileName { get; set; }
 		public string GenericDataXassetFileName { get; set; }
-		public string TextureFileName { get; set; }
-		public string TextureInputFileName { get; set; }
-		public string TextureXassetFileName { get; set; }
 	}
 
 	public class BreakableConverter
@@ -33,7 +32,7 @@ namespace Converter
 
 			foreach (string file in Directory.GetFiles(m_source))
 			{
-				if (Path.GetExtension(file) != ".png")
+				if (Path.GetExtension(file) != ".bin")
 				{
 					continue;
 				}
@@ -71,6 +70,8 @@ namespace Converter
 		{
 			foreach (BreakableFile file in m_files)
 			{
+				PhysicBodyBreakable body = DataManager.LoadObject<PhysicBodyBreakable>(path, true);
+
 				//writeTexture(file.ColorFileName, file.TextureInputFileName, file.TextureXassetFileName);
 				//writeGenericData(file.GenericDataFileName, file.GenericDataXassetFileName, file.CollisionFileName, file.TextureFileName);
 			}

@@ -27,13 +27,12 @@ namespace Converter
 		{
 			if( e.TabPage == tabBreakables)
 			{
-
+				rescanBreakableFiles();
 			}
 			else
 			{
 				rescanIslandFiles();
 			}
-			//PhysicBodyBreakable body = DataManager.LoadObject<PhysicBodyBreakable>(path, true);
 		}
 		
 		private void buttonBreakableBrowseSource_Click(object sender, EventArgs e)

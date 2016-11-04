@@ -310,7 +310,8 @@
 			this.textBreakableSource.Name = "textBreakableSource";
 			this.textBreakableSource.Size = new System.Drawing.Size(880, 20);
 			this.textBreakableSource.TabIndex = 1;
-			this.textBreakableSource.Text = "E:\\Development\\tiki1\\GameMainContent\\Islands";
+			this.textBreakableSource.Text = "E:\\Development\\tiki1\\GameMain\\Data\\TikiEngine.Elements.Physic.PhysicBodyBreakable" +
+    "";
 			// 
 			// label3
 			// 
