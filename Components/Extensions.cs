@@ -67,7 +67,21 @@ namespace TikiEngine
             );
         }
 
-        public static Vertices SelectAll(this List<Vertices> source)
+		public static Vector2 GetPolygonCenter(this IEnumerable<Vector2> source)
+		{
+			int count = 0;
+			Vector2 center = Vector2.Zero;
+			foreach (Vector2 v in source)
+			{
+				center += v;
+				count++;
+			}
+			center /= count;
+
+			return center;
+		}
+
+		public static Vertices SelectAll(this List<Vertices> source)
         {
             return new Vertices(
                 source.SelectMany(v => v).Distinct().ToArray()

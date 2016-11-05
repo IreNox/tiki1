@@ -271,7 +271,7 @@
 			this.listBreakables.IntegralHeight = false;
 			this.listBreakables.Location = new System.Drawing.Point(0, 0);
 			this.listBreakables.Name = "listBreakables";
-			this.listBreakables.Size = new System.Drawing.Size(346, 506);
+			this.listBreakables.Size = new System.Drawing.Size(346, 609);
 			this.listBreakables.TabIndex = 2;
 			this.listBreakables.SelectedIndexChanged += new System.EventHandler(this.listBreakables_SelectedIndexChanged);
 			// 

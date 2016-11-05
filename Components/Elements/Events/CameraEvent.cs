@@ -10,7 +10,7 @@ namespace TikiEngine.Elements.Events
 {
     public class CameraEvent : GameEvent
     {
-        private long time = 5000;
+        //private long time = 5000;
 
         private Vector2 oldOffset;
         private Vector2 offset;
