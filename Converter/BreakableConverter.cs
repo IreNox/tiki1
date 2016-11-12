@@ -7,6 +7,7 @@ using TikiEngine;
 using TikiEngine.Elements.Physic;
 using System;
 using FarseerPhysics.Common.PolygonManipulation;
+using System.Diagnostics;
 
 namespace Converter
 {
@@ -201,21 +202,24 @@ namespace Converter
 			PhysicBodyBreakable body = DataManager.LoadObject<PhysicBodyBreakable>(sourceName, true);
 			List<Vector2> collisionVertices = mergePolygons(body.Vertices);
 
+			// tranform
 			XElement transformObject = new XElement("object", new XAttribute("type", "Transform2dComponentInitData"));
 			XElement transformTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Transform}"));
 			XElement transformInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), transformObject);
 			XElement transformComponent = new XElement("object", new XAttribute("type", "EntityComponent"), transformTypeField, transformInitDataField);
 			XElement transformElement = new XElement("element", new XAttribute("type", "EntityComponent"), transformComponent);
 
+			// texture
 			string textureFilename = System.IO.Path.GetFileNameWithoutExtension(body.TextureFile) + ".texture";
-			XElement textureTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
-			XElement textureLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "5"));
-			XElement textureObject = new XElement("object", new XAttribute("type", "TextureComponentInitData"), textureLayerField);
-			XElement textureTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Texture}"));
-			XElement textureInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), textureObject);
-			XElement textureComponent = new XElement("object", new XAttribute("type", "EntityComponent"), textureTypeField, textureInitDataField);
-			XElement textureElement = new XElement("element", new XAttribute("type", "EntityComponent"), textureComponent);
+			XElement spriteTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
+			XElement spriteLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "{enum MechanicaRenderLayer.Islands}"));
+			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteLayerField);
+			XElement spriteTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Sprite}"));
+			XElement spriteInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), spriteObject);
+			XElement spriteComponent = new XElement("object", new XAttribute("type", "EntityComponent"), spriteTypeField, spriteInitDataField);
+			XElement spriteElement = new XElement("element", new XAttribute("type", "EntityComponent"), spriteComponent);
 
+			// body
 			XElement bodyDensityField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "density"), new XAttribute("value", "10.0"));
 			XElement bodyFrictionField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "friction"), new XAttribute("value", "1.0"));
 			XElement bodyFreeRoationField = new XElement("field", new XAttribute("type", "bool"), new XAttribute("name", "freeRotation"), new XAttribute("value", "true"));
@@ -242,13 +246,48 @@ namespace Converter
 			XElement bodyComponent = new XElement("object", new XAttribute("type", "EntityComponent"), bodyTypeField, bodyInitDataField);
 			XElement bodyElement = new XElement("element", new XAttribute("type", "EntityComponent"), bodyComponent);
 
+			// breakable
+			XElement breakableFragmentsArray = new XElement("array", new XAttribute("type", "BreakableFragment"));
+			foreach (FarseerPhysics.Common.Vertices fragmentPoints in body.Vertices)
+			{
+				Debug.Assert(fragmentPoints.Count <= 8);
+				XElement fragmentPointsArray = new XElement("array", new XAttribute("type", "float2"));
+
+				foreach (Vector2 point in fragmentPoints)
+				{
+					XElement xField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "x"), new XAttribute("value", point.X.ToString().Replace(',', '.')));
+					XElement yField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "y"), new XAttribute("value", point.Y.ToString().Replace(',', '.')));
+					XElement vertexObject = new XElement("object", new XAttribute("type", "float2"), xField, yField);
+					XElement vertexElement = new XElement("element", new XAttribute("type", "float2"), vertexObject);
+
+					fragmentPointsArray.Add(vertexElement);
+				}
+
+				XElement fragmentPointsField = new XElement("field", new XAttribute("type", "{array float2}"), new XAttribute("name", "points"), fragmentPointsArray);
+				XElement fragmentObject = new XElement("object", new XAttribute("type", "BreakableFragment"), fragmentPointsField);
+				XElement fragmentElement = new XElement("element", new XAttribute("type", "BreakableFragment"), fragmentObject);
+				breakableFragmentsArray.Add(fragmentElement);
+			}
+
+			XElement breakabkeDestructionForceField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "destructionForce"), new XAttribute("value", "10.0"));
+			XElement breakabkeFragmentMaterialField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "fragmentMaterialId"), new XAttribute("value", "{enum MechanicaMaterialId.Island}"));
+			XElement breakableFragmentsField = new XElement("field", new XAttribute("type", "{array BreakableFragment}"), new XAttribute("name", "fragments"), breakableFragmentsArray);
+
+			XElement breakableObject = new XElement("object", new XAttribute("type", "BreakableComponentInitData"), breakabkeDestructionForceField, breakabkeFragmentMaterialField, breakableFragmentsField);
+			XElement breakableTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum MechanicaComponentType.Breakable}"));
+			XElement breakableInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), breakableObject);
+			XElement breakableComponent = new XElement("object", new XAttribute("type", "EntityComponent"), breakableTypeField, breakableInitDataField);
+			XElement breakableElement = new XElement("element", new XAttribute("type", "EntityComponent"), breakableComponent);
+
+			// wiggle
 			XElement wiggleObject = new XElement("object", new XAttribute("type", "WiggleComponentInitData"));
 			XElement wiggleTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum MechanicaComponentType.Wiggle}"));
 			XElement wiggleInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), wiggleObject);
 			XElement wiggleComponent = new XElement("object", new XAttribute("type", "EntityComponent"), wiggleTypeField, wiggleInitDataField);
 			XElement wiggleElement = new XElement("element", new XAttribute("type", "EntityComponent"), wiggleComponent);
 
-			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, textureElement, bodyElement, wiggleElement);
+			// entity
+			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, spriteElement, bodyElement, breakableElement, wiggleElement);
 			XElement componentsField = new XElement("field", new XAttribute("type", "{array EntityComponent}"), new XAttribute("name", "components"), componentsArray);
 			XElement templateObject = new XElement("object", new XAttribute("type", "EntityTemplateData"), componentsField);
 			XElement resource = new XElement("resource", new XAttribute("type", "EntityTemplate"), templateObject);

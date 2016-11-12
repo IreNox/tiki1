@@ -167,14 +167,13 @@ namespace Converter
 			XElement textureOffsetYField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "y"), new XAttribute("value", textureOffset.Y.ToString().Replace(',', '.')));
 			XElement textureOffsetObject = new XElement("object", new XAttribute("type", "float2"), textureOffsetXField, textureOffsetYField);
 
-			XElement textureTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
-			XElement textureOffsetField = new XElement("field", new XAttribute("type", "float2"), new XAttribute("name", "offset"), textureOffsetObject);
-			XElement textureLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "5"));
-			XElement textureObject = new XElement("object", new XAttribute("type", "TextureComponentInitData"), textureTextureField, textureOffsetField, textureLayerField);
-			XElement textureTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Texture}"));
-			XElement textureInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), textureObject);
-			XElement textureComponent = new XElement("object", new XAttribute("type", "EntityComponent"), textureTypeField, textureInitDataField);
-			XElement textureElement = new XElement("element", new XAttribute("type", "EntityComponent"), textureComponent);
+			XElement spriteTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
+			XElement spriteLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "{enum MechanicaRenderLayer.Islands}"));
+			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteLayerField);
+			XElement spriteTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Sprite}"));
+			XElement spriteInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), spriteObject);
+			XElement spriteComponent = new XElement("object", new XAttribute("type", "EntityComponent"), spriteTypeField, spriteInitDataField);
+			XElement spriteElement = new XElement("element", new XAttribute("type", "EntityComponent"), spriteComponent);
 
 			XElement bodyDensityField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "density"), new XAttribute("value", "10.0"));
 			XElement bodyFrictionField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "friction"), new XAttribute("value", "1.0"));
@@ -208,7 +207,7 @@ namespace Converter
 			XElement wiggleComponent = new XElement("object", new XAttribute("type", "EntityComponent"), wiggleTypeField, wiggleInitDataField);
 			XElement wiggleElement = new XElement("element", new XAttribute("type", "EntityComponent"), wiggleComponent);
 
-			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, textureElement, bodyElement, wiggleElement);
+			XElement componentsArray = new XElement("array", new XAttribute("type", "EntityComponent"), transformElement, spriteElement, bodyElement, wiggleElement);
 			XElement componentsField = new XElement("field", new XAttribute("type", "{array EntityComponent}"), new XAttribute("name", "components"), componentsArray);
 			XElement templateObject = new XElement("object", new XAttribute("type", "EntityTemplateData"), componentsField);
 			XElement resource = new XElement("resource", new XAttribute("type", "EntityTemplate"), templateObject);
