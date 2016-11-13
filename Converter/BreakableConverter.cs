@@ -174,7 +174,7 @@ namespace Converter
 			{
 				result.Add(line.start);
 			}
-			
+
 			VectorComparer comparer = new VectorComparer(result.GetPolygonCenter());
 			result.Sort(comparer);
 
@@ -210,10 +210,12 @@ namespace Converter
 			XElement transformElement = new XElement("element", new XAttribute("type", "EntityComponent"), transformComponent);
 
 			// texture
-			string textureFilename = System.IO.Path.GetFileNameWithoutExtension(body.TextureFile) + ".texture";
+			string textureFilename = System.IO.Path.GetFileNameWithoutExtension(body.TextureFile);
+			textureFilename = textureFilename.Substring(0, textureFilename.Length - 2);
+			textureFilename	+= ".texture";
 			XElement spriteTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
 			XElement spriteLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "{enum MechanicaRenderLayer.Islands}"));
-			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteLayerField);
+			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteLayerField, spriteTextureField);
 			XElement spriteTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Sprite}"));
 			XElement spriteInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), spriteObject);
 			XElement spriteComponent = new XElement("object", new XAttribute("type", "EntityComponent"), spriteTypeField, spriteInitDataField);
@@ -269,11 +271,14 @@ namespace Converter
 				breakableFragmentsArray.Add(fragmentElement);
 			}
 
-			XElement breakabkeDestructionForceField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "destructionForce"), new XAttribute("value", "10.0"));
-			XElement breakabkeFragmentMaterialField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "fragmentMaterialId"), new XAttribute("value", "{enum MechanicaMaterialId.Island}"));
+			XElement breakableDestructionForceField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "destructionForce"), new XAttribute("value", "10.0"));
+			XElement breakableFragmentMaxDepthField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "fragmentMaxDepth"), new XAttribute("value", "5"));
+			XElement breakableFragmentMinBreakAfterSecondsField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "fragmentMinBreakAfterSeconds"), new XAttribute("value", "0.1"));
+			XElement breakableFragmentMaxBreakAfterSecondsField = new XElement("field", new XAttribute("type", "float"), new XAttribute("name", "fragmentMaxBreakAfterSeconds"), new XAttribute("value", "0.8"));
+			XElement breakableFragmentMaterialField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "fragmentMaterialId"), new XAttribute("value", "{enum MechanicaMaterialId.Island}"));
 			XElement breakableFragmentsField = new XElement("field", new XAttribute("type", "{array BreakableFragment}"), new XAttribute("name", "fragments"), breakableFragmentsArray);
 
-			XElement breakableObject = new XElement("object", new XAttribute("type", "BreakableComponentInitData"), breakabkeDestructionForceField, breakabkeFragmentMaterialField, breakableFragmentsField);
+			XElement breakableObject = new XElement("object", new XAttribute("type", "BreakableComponentInitData"), breakableDestructionForceField, breakableFragmentMaxDepthField, breakableFragmentMinBreakAfterSecondsField, breakableFragmentMaxBreakAfterSecondsField, breakableFragmentMaterialField, breakableFragmentsField);
 			XElement breakableTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum MechanicaComponentType.Breakable}"));
 			XElement breakableInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), breakableObject);
 			XElement breakableComponent = new XElement("object", new XAttribute("type", "EntityComponent"), breakableTypeField, breakableInitDataField);
