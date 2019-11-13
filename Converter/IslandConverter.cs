@@ -54,8 +54,8 @@ namespace Converter
 
 					islandFile.Name = name;
 					islandFile.TextureFileName = islandFile.Name + ".texture";
-					islandFile.GenericDataFileName = Path.Combine(m_destination, "genericdata\\entities\\islands", islandFile.Name + ".tikigenericobjects");
-					islandFile.GenericDataXassetFileName = Path.Combine(m_destination, "genericdata\\entities\\islands", islandFile.Name + ".entity.xasset");
+					islandFile.GenericDataFileName = Path.Combine(m_destination, "generic_data\\entities\\islands", islandFile.Name + ".generic_data");
+					islandFile.GenericDataXassetFileName = Path.Combine(m_destination, "generic_data\\entities\\islands", islandFile.Name + ".entity.xasset");
 					islandFile.TextureInputFileName = Path.Combine(m_destination, "textures\\islands", islandFile.Name + ".png");
 					islandFile.TextureXassetFileName = Path.Combine(m_destination, "textures\\islands", islandFile.Name + ".texture.xasset");
 				}
@@ -169,7 +169,7 @@ namespace Converter
 
 			XElement spriteTextureField = new XElement("field", new XAttribute("type", "{reference Texture}"), new XAttribute("name", "texture"), new XAttribute("value", "TEXR:" + textureFilename));
 			XElement spriteLayerField = new XElement("field", new XAttribute("type", "uint32"), new XAttribute("name", "layerId"), new XAttribute("value", "{enum MechanicaRenderLayer.Islands}"));
-			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteLayerField);
+			XElement spriteObject = new XElement("object", new XAttribute("type", "SpriteComponentInitData"), spriteTextureField, spriteLayerField);
 			XElement spriteTypeField = new XElement("field", new XAttribute("type", "crc32"), new XAttribute("name", "componentType"), new XAttribute("value", "{enum Components2dType.Sprite}"));
 			XElement spriteInitDataField = new XElement("field", new XAttribute("type", "{pointer ComponentInitData}"), new XAttribute("name", "initData"), spriteObject);
 			XElement spriteComponent = new XElement("object", new XAttribute("type", "EntityComponent"), spriteTypeField, spriteInitDataField);
@@ -213,12 +213,12 @@ namespace Converter
 			XElement resource = new XElement("resource", new XAttribute("type", "EntityTemplate"), templateObject);
 			XElement root = new XElement("tikigenericobjects", resource);
 			XDocument doc = new XDocument(root);
-			File.WriteAllText(genericFilename, doc.ToString());
+			doc.Save(genericFilename);
 
-			XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(genericFilename)), new XAttribute("type", "entity"));
-			XElement xassetRoot = new XElement("tikiasset", input);
-			XDocument xassetDoc = new XDocument(xassetRoot);
-			File.WriteAllText(xassetFilename, xassetDoc.ToString());
+			//XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(genericFilename)), new XAttribute("type", "entity"));
+			//XElement xassetRoot = new XElement("tikiasset", input);
+			//XDocument xassetDoc = new XDocument(xassetRoot);
+			//xassetDoc.Save(xassetFilename);
 		}
 
 		private void writeTexture(string sourceFilename, string inputFilename, string xassetFilename)
@@ -270,10 +270,10 @@ namespace Converter
 			//psdFile.Save(inputFilename, Encoding.Default);
 			colorImage.Save(inputFilename, ImageFormat.Png);
 
-			XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(inputFilename)), new XAttribute("type", "texture"));
-			XElement root = new XElement("tikiasset", input);
-			XDocument doc = new XDocument(root);
-			File.WriteAllText(xassetFilename, doc.ToString());
+			//XElement input = new XElement("input", new XAttribute("file", Path.GetFileName(inputFilename)), new XAttribute("type", "texture"));
+			//XElement root = new XElement("tikiasset", input);
+			//XDocument doc = new XDocument(root);
+			//File.WriteAllText(xassetFilename, doc.ToString());
 		}
 	}
 }

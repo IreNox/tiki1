@@ -43,7 +43,7 @@ namespace TikiEngine.States
             _textureWhite.SetData<Color>(new Color[] { Color.White });
 
             GI.Sound.AddLoopingSound(TikiSound.Atmo, 0.25f);
-            
+
             _spriteRobo = new Sprite() {
                 TextureFile = "menu/menu_robo",
                 Origin = Vector2.Zero,
@@ -204,7 +204,7 @@ namespace TikiEngine.States
                 )
             );
             items[4].Circle.CurrentPosition = new Vector2(7, 1);
-            
+
             _menus["levels"] = items;
         }
 
@@ -353,7 +353,7 @@ namespace TikiEngine.States
                 TikiSound.Atmo,
                 0.6f - (_menuItems.Min(e => e.Distance) / 3)
             );
-                
+
 
             if (_alpha > 0) _alpha -= 0.001f * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
